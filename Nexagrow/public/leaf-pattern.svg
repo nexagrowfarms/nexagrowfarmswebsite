@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Simple leaf shape - repeated at different positions and rotations, low opacity -->
+  <g fill="#6b8f4c" opacity="0.06">
+    <path d="M80 40 C50 70 45 120 80 180 C115 120 110 70 80 40" transform="rotate(-15 80 110)"/>
+    <path d="M200 20 C165 55 158 110 200 175 C242 110 235 55 200 20" transform="rotate(25 200 97)"/>
+    <path d="M320 60 C285 95 278 140 320 200 C362 140 355 95 320 60" transform="rotate(-30 320 130)"/>
+    <path d="M40 200 C15 230 12 275 40 330 C68 275 65 230 40 200" transform="rotate(40 40 265)"/>
+    <path d="M160 220 C130 250 125 300 160 360 C195 300 190 250 160 220" transform="rotate(-20 160 290)"/>
+    <path d="M280 240 C250 270 245 320 280 380 C315 320 310 270 280 240" transform="rotate(15 280 310)"/>
+    <path d="M360 180 C330 210 325 260 360 315 C395 260 390 210 360 180" transform="rotate(-35 360 247)"/>
+    <path d="M120 100 C90 130 85 180 120 240 C155 180 150 130 120 100" transform="rotate(10 120 170)"/>
+    <path d="M240 120 C210 150 205 200 240 260 C275 200 270 150 240 120" transform="rotate(-25 240 190)"/>
+  </g>
+</svg>
