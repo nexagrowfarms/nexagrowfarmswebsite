@@ -136,7 +136,7 @@ export default function ChatBot() {
               href="https://wa.me/917310400944"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative shrink-0 w-12 h-12 rounded-full overflow-hidden shadow-xl ring-2 ring-black/10 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-offset-2"
+              className="relative shrink-0 w-[84px] h-[84px] rounded-full overflow-hidden shadow-xl ring-2 ring-black/10 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-offset-2"
               aria-label="Chat on WhatsApp"
             >
               <Image
@@ -144,27 +144,27 @@ export default function ChatBot() {
                 alt="WhatsApp"
                 fill
                 className="object-cover"
-                sizes="48px"
+                sizes="84px"
               />
             </a>
 
             {/* Avatar (single) */}
             <button
               onClick={openChat}
-              className="relative shrink-0 w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-xl ring-2 ring-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:ring-2 hover:ring-(--leaf-500) transition-all"
+              className="relative shrink-0 w-[84px] h-[84px] rounded-full overflow-hidden border-2 border-white shadow-xl ring-2 ring-black/10 focus:outline-none focus:ring-2 focus:ring-offset-2 hover:ring-2 hover:ring-(--leaf-500) transition-all"
               style={{ borderColor: 'var(--leaf-200)' }}
               aria-label="Open chat"
             >
               <Image
-                src="/farmer.jpg"
+                src="/farmer_chatbot_sticker.webp"
                 alt="Chat"
                 fill
                 className="object-cover"
-                sizes="56px"
+                sizes="84px"
                 unoptimized
               />
               <span
-                className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white bg-green-500"
+                className="absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white bg-green-500"
                 title="Online"
               />
             </button>

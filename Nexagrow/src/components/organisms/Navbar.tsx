@@ -420,13 +420,15 @@ export default function Navbar() {
       </div>
 
       <div 
-        className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 overflow-hidden shadow-xl"
+        className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 overflow-visible shadow-xl"
         style={{ background: 'linear-gradient(to bottom right, var(--leaf-600), var(--leaf-500))' }}
       >
-        {/* Contact card inspired overlays and subtle decorative circles */}
-        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24 pointer-events-none" />
+        {/* Contact card inspired overlays and subtle decorative circles clipped to navbar */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-24 -translate-x-24" />
+        </div>
 
         {/* Moving announcement bar */}
         <AnnouncementBar />
@@ -549,13 +551,7 @@ export default function Navbar() {
               <div ref={dropdownRef} className="relative flex items-center">
                 {/* Mobile/tablet: icon-only on small screens to avoid overlap, full label from sm */}
                 <Link
-                  href={session ? "/account" : "#"}
-                  onClick={(e) => {
-                    if (!session) {
-                      e.preventDefault();
-                      setShowLoginModal(true);
-                    }
-                  }}
+                  href={session ? "/account" : "/login"}
                   className="flex md:hidden items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:space-x-2 p-2 sm:p-3 hover:bg-white/20 transition-all duration-300 rounded-xl"
                   aria-label={session ? 'Account' : 'Sign In'}
                 >
@@ -564,70 +560,85 @@ export default function Navbar() {
                     {session ? 'Account' : 'Sign In'}
                   </span>
                 </Link>
-                {/* Desktop: dropdown */}
-                <div
-                  className="hidden md:flex items-center space-x-2 p-3 hover:bg-white/20 cursor-pointer transition-all duration-300 rounded-xl"
-                  onClick={() => setShowDropdown(!showDropdown)}
-                >
-                  <FiUser className="text-xl transition-colors drop-shadow-sm" style={{ color: 'var(--leaf-200)' }} />
-                  <span className="text-sm font-semibold whitespace-nowrap drop-shadow-sm" style={{ color: 'var(--leaf-100)' }}>
-                    {session ? 'Account' : 'Sign In'}
-                  </span>
-                </div>
-                {showDropdown && (
+
+                {/* Desktop: When authenticated show dropdown toggle; when logged out link directly to /login */}
+                {session ? (
+                  <button
+                    type="button"
+                    className="hidden md:flex items-center space-x-2 p-3 hover:bg-white/20 cursor-pointer transition-all duration-300 rounded-xl"
+                    onClick={() => setShowDropdown(!showDropdown)}
+                    aria-label="Account menu"
+                  >
+                    <FiUser className="text-xl transition-colors drop-shadow-sm" style={{ color: 'var(--leaf-200)' }} />
+                    <span className="text-sm font-semibold whitespace-nowrap drop-shadow-sm" style={{ color: 'var(--leaf-100)' }}>
+                      Account
+                    </span>
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="hidden md:flex items-center space-x-2 p-3 hover:bg-white/20 cursor-pointer transition-all duration-300 rounded-xl"
+                    aria-label="Sign In"
+                  >
+                    <FiUser className="text-xl transition-colors drop-shadow-sm" style={{ color: 'var(--leaf-200)' }} />
+                    <span className="text-sm font-semibold whitespace-nowrap drop-shadow-sm" style={{ color: 'var(--leaf-100)' }}>
+                      Sign In
+                    </span>
+                  </Link>
+                )}
+
+                {session && showDropdown && (
                   <div className="absolute right-0 top-full mt-2 w-52 max-w-[calc(100vw-2rem)] max-h-[70vh] overflow-y-auto bg-white rounded-2xl shadow-2xl z-[60] animate-in fade-in slide-in-from-top-2 duration-200 border-2 hidden md:block" style={{ borderColor: 'var(--leaf-200)' }}>
-                    {session ? (
-                      <div className="py-2">
-                        {/* Welcome Section */}
-                        <div className="px-4 py-4 border-b" style={{ background: 'linear-gradient(to right, var(--leaf-50), var(--leaf-100))', borderColor: 'var(--leaf-200)' }}>
-                          <div className="flex items-center space-x-3">
-                            <div className="p-2 rounded-xl" style={{ background: 'linear-gradient(to bottom right, var(--leaf-100), var(--leaf-200))' }}>
-                              <FiUser className="text-lg" style={{ color: 'var(--leaf-600)' }} />
-                            </div>
-                            <div>
-                              <span className="text-sm font-semibold block" style={{ color: 'var(--leaf-800)' }}>Welcome!</span>
-                              <span className="text-xs font-medium" style={{ color: 'var(--leaf-600)' }}>
-                                {session.user?.name?.split(' ')[0] || session.user?.email?.split('@')[0]}
-                              </span>
-                            </div>
+                    <div className="py-2">
+                      {/* Welcome Section */}
+                      <div className="px-4 py-4 border-b" style={{ background: 'linear-gradient(to right, var(--leaf-50), var(--leaf-100))', borderColor: 'var(--leaf-200)' }}>
+                        <div className="flex items-center space-x-3">
+                          <div className="p-2 rounded-xl" style={{ background: 'linear-gradient(to bottom right, var(--leaf-100), var(--leaf-200))' }}>
+                            <FiUser className="text-lg" style={{ color: 'var(--leaf-600)' }} />
+                          </div>
+                          <div>
+                            <span className="text-sm font-semibold block" style={{ color: 'var(--leaf-800)' }}>Welcome!</span>
+                            <span className="text-xs font-medium" style={{ color: 'var(--leaf-600)' }}>
+                              {session.user?.name?.split(' ')[0] || session.user?.email?.split('@')[0]}
+                            </span>
                           </div>
                         </div>
-                        
-                        {/* Menu Items */}
-                        <div className="py-1">
-                          <Link href="/account" className="block px-4 py-3 text-sm font-semibold transition-all duration-200 hover:opacity-80" style={{ color: 'var(--leaf-800)' }}>
-                            My Account
-                          </Link>
-                          <Link href="/my-orders" className="block px-4 py-3 text-sm font-semibold transition-all duration-200 hover:opacity-80" style={{ color: 'var(--leaf-800)' }}>
-                            My Orders
-                          </Link>
-                        </div>
-
-                        {/* Sign Out Section */}
-                        <div className="border-t py-1" style={{ borderColor: 'var(--leaf-200)' }}>
-                          <button
-                            onClick={() => signOut()}
-                            className="block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-200 hover:opacity-80"
-                            style={{ color: 'var(--leaf-800)' }}
-                          >
-                            Sign Out
-                          </button>
-                        </div>
                       </div>
-                    ) : (
-                      <div className="p-3">
+                      
+                      {/* Menu Items */}
+                      <div className="py-1">
+                        <Link 
+                          href="/account" 
+                          onClick={() => setShowDropdown(false)}
+                          className="block px-4 py-3 text-sm font-semibold transition-all duration-200 hover:opacity-80" 
+                          style={{ color: 'var(--leaf-800)' }}
+                        >
+                          My Account
+                        </Link>
+                        <Link 
+                          href="/my-orders" 
+                          onClick={() => setShowDropdown(false)}
+                          className="block px-4 py-3 text-sm font-semibold transition-all duration-200 hover:opacity-80" 
+                          style={{ color: 'var(--leaf-800)' }}
+                        >
+                          My Orders
+                        </Link>
+                      </div>
+
+                      {/* Sign Out Section */}
+                      <div className="border-t py-1" style={{ borderColor: 'var(--leaf-200)' }}>
                         <button
                           onClick={() => {
-                            const callbackUrl = encodeURIComponent(window.location.href);
-                            window.location.href = `/login?callbackUrl=${callbackUrl}`;
+                            setShowDropdown(false);
+                            signOut();
                           }}
-                          className="flex items-center justify-center w-full px-6 py-4 rounded-xl transition-all duration-200 font-semibold border-2 hover:shadow-lg"
-                          style={{ color: 'var(--leaf-800)', borderColor: 'var(--leaf-200)' }}
+                          className="block w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-200 hover:opacity-80"
+                          style={{ color: 'var(--leaf-800)' }}
                         >
-                          <span>Sign in</span>
+                          Sign Out
                         </button>
                       </div>
-                    )}
+                    </div>
                   </div>
                 )}
               </div>

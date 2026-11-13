@@ -35,7 +35,7 @@ const About = () => {
               When you buy from us, you support a system that rewards honest, hard work.
             </p>
           </div>
-          
+
           <div className="relative">
             <div className="rounded-3xl p-8 shadow-2xl" style={{ background: 'linear-gradient(to bottom right, var(--leaf-200), var(--leaf-300))' }}>
               <div className="grid grid-cols-2 gap-6">
@@ -64,10 +64,10 @@ const About = () => {
           <p className="text-lg text-gray-600">Farms, community, and the journey from soil to you</p>
         </div>
         <AgricultureCollage compact fullWidth title="" images={[
-          { src: "/world-pictures-2.png", alt: "Wooden spoon of moringa powder on fresh leaves" },
-          { src: "/world-pictures-3.png", alt: "Fresh moringa leaves collected after harvest" },
-          { src: "/world-pictures-4.png", alt: "Dried moringa leaves ready for processing" },
-          { src: "/world-pictures-1.png", alt: "Moringa powder on a wooden spoon with fresh leaves" },
+          { src: "/world-pictures-2.webp", alt: "Wooden spoon of moringa powder on fresh leaves" },
+          { src: "/world-pictures-3.webp", alt: "Fresh moringa leaves collected after harvest" },
+          { src: "/world-pictures-4.webp", alt: "Dried moringa leaves ready for processing" },
+          { src: "/world-pictures-1.webp", alt: "Moringa powder on a wooden spoon with fresh leaves" },
         ]} />
       </div>
 
@@ -131,7 +131,7 @@ const About = () => {
             </div>
           </div>
           <p className="mt-8 text-lg leading-relaxed text-white/90">
-            Your trust is our most precious ingredient. Every product is crafted under 
+            Your trust is our most precious ingredient. Every product is crafted under
             the highest standards of quality, hygiene, and ethical sourcing.
           </p>
         </div>

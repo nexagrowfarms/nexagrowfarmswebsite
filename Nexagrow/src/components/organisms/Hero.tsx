@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="absolute inset-0 w-full h-full">
         {/* Mobile hero image - object-[center_55%] shows product packaging & bottom elements */}
         <Image
-          src="/mobile.webp"
+          src="/new_mobile.webp"
           alt={`${BRAND.name} Hero - Mobile`}
           fill
           className="object-cover object-[center_55%] animate-fade-in md:hidden"
@@ -28,7 +28,7 @@ const Hero = () => {
         />
         {/* Desktop hero image */}
         <Image
-          src="/herosection.webp"
+          src="/new_herosection.webp"
           alt={`${BRAND.name} Hero Section`}
           fill
           className="object-cover object-[85%_center] animate-fade-in hidden md:block"

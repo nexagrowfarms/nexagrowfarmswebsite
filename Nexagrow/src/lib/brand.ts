@@ -19,7 +19,7 @@ export const BRAND = {
   name: 'Nexa Grow Farms',
 
   /** Short brand name used in tight UI spaces (navbar, payment modals, chatbot) */
-  shortName: 'Nexa Grow',
+  shortName: 'Nexa Grow Farms',
 
   /** Official registered legal name — do not abbreviate */
   legalName: 'NEXA GROW FARMER PRODUCER COMPANY LIMITED',
